@@ -47,78 +47,15 @@
 
 //   Environment setupEnv(String projectId, {bool useEmulator = false}) {
 //     switch (projectId) {
-//       case firebaseProdProjectId:
-//         return Environment(FirebaseEnv.prod, useEmulator: useEmulator);
-//       case firebaseDevProjectId:
-//         return Environment(FirebaseEnv.dev, useEmulator: useEmulator);
-//       default:
-//         throw ArgumentError();
+//     삭제
 //     }
 //   }
 
 //   runZonedGuarded<Future<void>>(() async {
 //     runApp(
-//       FutureBuilder<List<Object>>(
-//         future: Future.wait([
-//           Firebase.initializeApp(),
-//           SharedPreferences.getInstance(),
-//         ]).then((rs) async {
-//           final firebaseApp = rs[0] as FirebaseApp;
-//           // final sharedPrefs = rs[1] as SharedPreferences;
-//           final env = setupEnv(
-//             firebaseApp.options.projectId,
-//             // useEmulator: true,
-//             // devUrls: sFbDevUrls,
-//           );
-//           final remoteConfig = RemoteConfig.instance;
-//           final l = L.instance;
+//      삭제
 
-//           // 프로덕션이면서 디버그 모드
-//           if (kDebugMode && env.firebaseEnv == FirebaseEnv.prod) {
-//             await FirebaseCrashlytics.instance
-//                 .setCrashlyticsCollectionEnabled(false);
-
-//             // Enable developer mode to relax fetch throttling
-//             remoteConfig.setConfigSettings(RemoteConfigSettings(
-//                 fetchTimeout: const Duration(),
-//                 minimumFetchInterval: const Duration()));
-//           } else {
-//             FlutterError.onError =
-//                 FirebaseCrashlytics.instance.recordFlutterError;
-//           }
-
-//           try {
-//             // Using default duration to force fetching from remote server.
-//             await remoteConfig.fetchAndActivate();
-//           } catch (exception) {
-//             l.info('main',
-//                 'runApp: remoteConfig: Unable to fetch. Cached or default values will be used');
-//             // rethrow;
-//           }
-
-//           return [...rs, env];
-//         }),
-//         builder: (context, snapshot) {
-//           if (snapshot.hasError) {
-//             throw snapshot.error!;
-//           }
-//           if (snapshot.hasData) {
-//             FirebaseApp firebaseApp = snapshot.data![0] as FirebaseApp;
-//             SharedPreferences prefs = snapshot.data![1] as SharedPreferences;
-//             Environment env = snapshot.data![2] as Environment;
-
-//             return MultiProvider(
-//               providers: [
-//                 Provider<FirebaseApp>.value(value: firebaseApp),
-//                 Provider<Environment>.value(value: env),
-//                 Provider<SharedPrefsApi>(
-//                     create: (_) => SharedPrefsApi(prefs), lazy: false),
-//               ],
-//               child: const GlobalDependencyInjector(),
-//             );
-//           } else {
-//             return Container();
-//           }
+//         삭제
 //         },
 //       ),
 //     );
@@ -143,12 +80,7 @@
 //       Provider<RemoteConfigApi>(
 //           lazy: false, create: (_) => RemoteConfigApi(RemoteConfig.instance)),
 //       Consumer<RemoteConfigApi>(
-//         builder: (_, remoteConfigApi, child) => Provider<UpdateService>(
-//             lazy: false,
-//             dispose: (_, service) => service.dispose(),
-//             create: (_) => UpdateService(
-//                 remoteConfigApi, Provider.of<Environment>(context)),
-//             child: child),
+//        삭제
 //       ),
 //       Provider<AuthService>(
 //         lazy: false,
@@ -182,88 +114,16 @@
 //         ),
 //       ),
 //       Consumer<SharedPrefsApi>(
-//         builder: (_, sharedPrefsApi, child) => Consumer<AuthService>(
-//             builder: (_, authService, authConsumerChild) => Consumer<AppApi>(
-//                 builder: (_, appApi, appApiConsumerChild) =>
-//                     Provider<Repository>(
-//                         lazy: false,
-//                         create: (_) => Repository(
-//                             environment: env,
-//                             sharedPrefsApi: sharedPrefsApi,
-//                             authBloc: authService,
-//                             firestoreApi: FirestoreApi(
-//                                 authService, FirebaseFirestore.instance),
-//                             functionsApi: FunctionsApi(
-//                                 FirebaseFunctions.instanceFor(
-//                                     region: 'asia-northeast3')),
-//                             cloudStorageApi:
-//                                 CloudStorageApi(FirebaseStorage.instance),
-//                             purchaseApi: PurchaseProductsApi(env),
-//                             kakaoRestApi: KakaoRestApi(),
-//                             instaRestApi: InstagramRestApi(),
-//                             appServiceApi: AppServiceApi(env, authService)),
-//                         child: appApiConsumerChild),
-//                 child: authConsumerChild),
-//             child: child),
+//        삭제
 //       ),
 //       Consumer<Repository>(
-//         builder: (_, repo, repoChild) => Consumer<NavigationService>(
-//           builder: (_, navigatorKey, navigatorKeyChild) =>
-//               Provider<PushNotiService>(
-//                   dispose: (_, service) => service.dispose(),
-//                   lazy: false,
-//                   child: navigatorKeyChild,
-//                   create: (_) => PushNotiService(
-//                       FirebaseMessaging.instance, repo, navigatorKey)),
-//           child: repoChild,
-//         ),
+//        삭제
 //       ),
 //       Consumer<AuthService>(
-//           builder: (_, authService, child) => Consumer<Repository>(
-//               builder: (_, repo, repoChild) => Consumer<NavigationService>(
-//                   builder: (_, navigatorKey, navigatorKeyChild) =>
-//                       Consumer<PushNotiService>(
-//                           builder: (_, msgSvc, msgSvcChild) =>
-//                               Provider<AuthStateService>(
-//                                   lazy: false,
-//                                   dispose: (_, service) => service.dispose(),
-//                                   create: (_) => AuthStateService(
-//                                         auth: authService,
-//                                         crashlytics:
-//                                             FirebaseCrashlytics.instance,
-//                                         firebaseAuth: FirebaseAuth.instance,
-//                                         googleSignIn: GoogleSignIn(),
-//                                         navi: navigatorKey,
-//                                         pushNoti: msgSvc,
-//                                         repo: repo,
-//                                       ),
-//                                   child: msgSvcChild),
-//                           child: navigatorKeyChild),
-//                   child: repoChild),
-//               child: child)),
+//         삭제
 //       Consumer<AuthService>(
-//           builder: (_, authService, child) => Consumer<AuthStateService>(
-//                 builder: (_, authState, aschild) => Consumer<Repository>(
-//                     builder: (_, repo, repoChild) => Provider<PurchaseBloc>(
-//                           lazy: false,
-//                           create: (_) =>
-//                               PurchaseBloc(repo, authService, authState),
-//                           dispose: (_, service) => service.dispose(),
-//                           child: repoChild,
-//                         ),
-//                     child: aschild),
-//                 child: child,
-//               )),
-//       Consumer<AuthStateService>(
-//           builder: (_, authState, child) => Consumer<Repository>(
-//               builder: (_, repo, repoChild) => Provider<MembershipBloc>(
-//                     lazy: false,
-//                     dispose: (_, service) => service.dispose(),
-//                     create: (_) =>
-//                         MembershipBloc(repo: repo, authState: authState),
-//                     child: repoChild,
-//                   ),
-//               child: child)),
+//         삭제
+//      삭제
 //       Consumer<Repository>(
 //           builder: (_, repo, repoChild) => MultiBlocProvider(
 //                 providers: [
@@ -298,33 +158,7 @@
 //     initializeDateFormatting();
 //     return OverlaySupport.global(
 //         child: StreamBuilder<AppTheme>(
-//             stream: themes.appTheme,
-//             initialData: AppTheme.light,
-//             builder: (context, snapshot) {
-//               final myAppTheme = snapshot.data!;
-
-//               return MaterialApp(
-//                 builder: (context, child) {
-//                   return MediaQuery(
-//                     data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-//                     child: child!,
-//                   );
-//                 },
-
-//                 // title: 'Flutter Demo',
-//                 navigatorObservers: [
-//                   navi.rootObserver,
-//                 ],
-//                 localizationsDelegates: const [
-//                   // GlobalCupertinoLocalizations.delegate,
-//                 ],
-//                 // home: ScreensScreen(),
-//                 routes: homeRoutes,
-//                 navigatorKey: navi.rootKey,
-//                 themeMode: myAppTheme.mode,
-//                 theme: AppTheme.light.spec,
-//                 darkTheme: AppTheme.dark.spec,
-//               );
+//            삭제
 //             }));
 //   }
 // }
