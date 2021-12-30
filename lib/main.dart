@@ -60,7 +60,7 @@
 //       ),
 //     );
 //   }, (Object error, StackTrace stackTrace) {
-//     FirebaseCrashlytics.instance.recordError(error, stackTrace);
+//     삭제.instance.recordError(error, stackTrace);
 //   });
 // }
 
@@ -76,48 +76,30 @@
 
 //     return MultiProvider(providers: [
 //       Provider<FirebaseAnalytics>(
-//           lazy: false, create: (_) => FirebaseAnalytics.instance),
+//           lazy: false, create: (_) => 삭제.instance),
 //       Provider<RemoteConfigApi>(
-//           lazy: false, create: (_) => RemoteConfigApi(RemoteConfig.instance)),
+//           lazy: false, create: (_) => 삭제(RemoteConfig.instance)),
 //       Consumer<RemoteConfigApi>(
 //        삭제
 //       ),
-//       Provider<AuthService>(
+//       Provider<삭제>(
 //         lazy: false,
 //         dispose: (_, service) => service.dispose(),
 //         create: (_) => AuthService(
 //           firebaseAuth: FirebaseAuth.instance,
 //         ),
 //       ),
-//       Provider<NavigationService>(
+//       Provider<삭제>(
 //         lazy: false,
 //         dispose: (_, service) => service.dispose(),
 //         create: (_) => NavigationService(),
 //       ),
-//       Provider<ThemeService>(
+//       Provider<삭제>(
 //         lazy: false,
 //         dispose: (_, service) => service.dispose(),
 //         create: (_) => ThemeService(),
 //       ),
-//       Provider<ConnectivityService>(
-//         lazy: false,
-//         dispose: (_, service) => service.dispose(),
-//         create: (_) => ConnectivityService(),
-//       ),
-//       Provider<PermissionService>(
-//           lazy: false, create: (_) => PermissionService()),
-//       Consumer<AuthService>(
-//         builder: (_, authService, child) => Provider(
-//           lazy: false,
-//           create: (_) => AppApi(authService),
-//           child: child,
-//         ),
-//       ),
-//       Consumer<SharedPrefsApi>(
-//        삭제
-//       ),
-//       Consumer<Repository>(
-//        삭제
+//    
 //       ),
 //       Consumer<AuthService>(
 //         삭제
