@@ -10,5 +10,6 @@ lib/apis/firestore/firestore_api.dart 에 기재되어있습니다.
 이부분의 파일들이 주로 기여도 95퍼센트 이상의 코드들입니다.
 
 감사합니다.
-devjunmin@gmail.com
-공일공_이구이육_공일팔일
+(devjunmin@gmail.com)
+
+문자) 공일공_이구이육_공일팔일
