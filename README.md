@@ -4,7 +4,9 @@
 
 참조용으로 봐주시면 감사하겠습니다.
 
-/lib/blocs 내의 폴더가 주 코딩 내역이며
+/lib/blocs 와
+/lib/views/
+경로 내역이 주 코딩 내역이며
 관련 db 핸들링은 
 lib/apis/firestore/firestore_api.dart 에 기재되어있습니다.
 이부분의 파일들이 주로 기여도 95퍼센트 이상의 코드들입니다.
