@@ -1,3 +1,5 @@
+Coding reference. It is not a buildable project, but only partially exists because it is for reference. Of course, the api is not working code.
+
 # working_refer
 실무에서 작성한 코드 레퍼런스입니다. 하나의 프로젝트가 아니라 참조용이라 부분적으로만 존재합니다.
 당연히 api가 작동하지않는 코드이며, 허락하에 실무에서 발췌한 코드라 협업자의 코드가 섞여있는 부분은 전부 뺐습니다.
